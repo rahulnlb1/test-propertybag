@@ -14,7 +14,7 @@ pipelines:
             - name: branchSnapshotBag
         execution:
           onExecute:
-            - echo "hello world 1"
+            - echo "hello world 2"
             - write_output branchSnapshotBag "snapshotVersion=0.0.0"
       - name: test_propertybag_2
         type: Bash
@@ -25,6 +25,6 @@ pipelines:
             - name: test_propertybag_1
         execution:
           onExecute:
-            - echo "hello world 1"
+            - echo "hello world 2"
             - echo $res_branchSnapshotBag_snapshotVersion
             
