@@ -1,0 +1,30 @@
+resources:
+  - name: branchSnapshotBag
+    type: PropertyBag
+    configuration:
+      snapshotVersion: ""
+
+pipelines:
+  - name: test_propertybag
+    steps:
+      - name: test_propertybag_1
+        type: Bash
+        configuration:
+          outputResources:
+            - name: branchSnapshotBag
+        execution:
+          onExecute:
+            - echo "hello world"
+            - write_output branchSnapshotBag "snapshotVersion=0.0.0"
+      - name: test_propertybag_2
+        type: Bash
+        configuration:
+          inputResources:
+            - name: branchSnapshotBag
+          inputSteps:
+            - name: test_propertybag_1
+        execution:
+          onExecute:
+            - echo "hello world"
+            - echo $res_branchSnapshotBag_snapshotVersion
+            
